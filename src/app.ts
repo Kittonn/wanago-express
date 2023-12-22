@@ -1,6 +1,8 @@
 import express, { Application } from "express";
 import bodyParser from "body-parser";
-import { Controller } from "interfaces/app.interface";
+import { Controller } from "interfaces/controller.interface";
+import connectDB from "./database/connect";
+import errorMiddleware from "./middleware/error.middleware";
 
 class App {
   public app: Application;
@@ -10,8 +12,10 @@ class App {
     this.app = express();
     this.port = port;
 
+    this.initializeDatabase();
     this.initializeMiddlewares();
     this.initializeControllers(controllers);
+    this.initializeErrorHandling();
   }
 
   private initializeMiddlewares() {
@@ -24,9 +28,17 @@ class App {
     });
   }
 
+  private initializeDatabase() {
+    connectDB();
+  }
+
+  private initializeErrorHandling() {
+    this.app.use(errorMiddleware);
+  }
+
   public listen() {
     this.app.listen(this.port, () => {
-      console.log(`listening on the port ${this.port}`);
+      console.log(`⚡ Server running on port ${this.port}`);
     });
   }
 }

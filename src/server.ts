@@ -1,6 +1,9 @@
 import App from "./app";
-import PostsController from "./controllers/posts.controller";
+import PostsController from "./modules/posts/posts.controller";
+import { env } from "./config/env.config";
 
-const app = new App([new PostsController()], 5000);
+const port = env.PORT || 5000;
+
+const app = new App([new PostsController()], port);
 
 app.listen();

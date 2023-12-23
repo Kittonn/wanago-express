@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { tryCatchFn } from "../utils/try-catch.util";
 import HttpException from "../exceptions/http.exception";
-import userModel from "../modules/users/models/user.model";
+import userModel, { User } from "../modules/users/models/user.model";
 import jwt from "jsonwebtoken";
 import { env } from "../config/env.config";
 
@@ -17,7 +17,7 @@ const authMiddleware = tryCatchFn(
 
     if (!user) throw new HttpException(401, "Unauthorized");
 
-    req.user = user;
+    req.user = user as User;
 
     next();
   }

@@ -1,6 +1,5 @@
 import { Request, Response, Router } from "express";
 import { Controller } from "../../interfaces/controller.interface";
-import userModel from "../../modules/users/models/user.model";
 import { tryCatchFn } from "../../utils/try-catch.util";
 import LoginDto from "./dto/login.dto";
 import RegisterDto from "./dto/register.dto";

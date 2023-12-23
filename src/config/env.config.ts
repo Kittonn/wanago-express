@@ -13,9 +13,15 @@ const dbConfig = z.object({
   MONGO_URI: z.string(),
 });
 
+const jwtConfig = z.object({
+  JWT_SECRET: z.string().min(1),
+  JWT_EXPIRES_IN: z.string().min(1),
+});
+
 export const envSchema = z.object({
   ...appConfig.shape,
   ...dbConfig.shape,
+  ...jwtConfig.shape,
 });
 
 dotenv.config();

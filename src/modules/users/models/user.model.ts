@@ -1,7 +1,7 @@
 import { Schema, model, Document, InferSchemaType } from "mongoose";
 
 const userSchema = new Schema({
-  name: String,
+  username: String,
   email: String,
   password: String,
 });

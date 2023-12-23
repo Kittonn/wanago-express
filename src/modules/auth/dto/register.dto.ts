@@ -1,9 +1,5 @@
-import { IsString } from "class-validator";
-import LoginDto from "./login.dto";
+import CreateUserDto from "../../../modules/users/dto/create-user.dto";
 
-class RegisterDto extends LoginDto {
-  @IsString()
-  public username!: string;
-}
+class RegisterDto extends CreateUserDto {}
 
 export default RegisterDto;

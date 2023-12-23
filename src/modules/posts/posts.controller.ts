@@ -44,13 +44,15 @@ class PostsController implements Controller {
   });
 
   private getAllPosts = tryCatchFn(async (req: Request, res: Response) => {
-    const posts = await this.post.find();
+    const posts = await this.post.find().populate("author", "-password -__v");
     return res.status(200).json(posts);
   });
 
   private getPostById = tryCatchFn(async (req: Request, res: Response) => {
     const id = req.params.id;
-    const post = await this.post.findById(id);
+    const post = await this.post
+      .findById(id)
+      .populate("author", "-password -__v");
     if (!post) {
       throw new PostNotFoundException(id);
     }

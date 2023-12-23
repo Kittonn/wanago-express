@@ -11,7 +11,9 @@ class AuthService {
   public user = userModel;
 
   public async register(registerDto: RegisterDto) {
-    const { email, username, password } = registerDto;
+    const { email, username, password, address } = registerDto;
+
+    console.log(registerDto);
 
     const userExist = await this.user.findOne({ email: email });
 
@@ -25,6 +27,7 @@ class AuthService {
       email,
       username,
       password: hashedPassword,
+      address,
     });
 
     return this.createToken({ sub: user._id });

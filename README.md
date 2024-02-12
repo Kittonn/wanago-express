@@ -1,3 +1,3 @@
 # Wanago Express
 
-Learning from the [Wanago](https://wanago.io/) blog.
+Learning from the [Wanago](https://wanago.io/courses/typescript-express-tutorial/) blog.
